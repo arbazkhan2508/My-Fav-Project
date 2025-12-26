@@ -85,12 +85,19 @@ export default function DateContractPage() {
         </div>
 
         {/* Agree Button */}
-        <div className="mt-10 flex justify-center">
+        <div className="mt-10 flex flex-col items-center gap-6">
           {agreed ? (
-            <div className="text-center animate-stamp">
-              <div className="text-3xl font-bold text-pink-500 mb-2 drop-shadow-[0_0_10px_rgba(236,72,153,1)]">YAAAY! Deal Done! 🤝💖</div>
-              <p className="text-lg text-pink-200">See you soon! 😘</p>
-            </div>
+            <>
+              <div className="text-center animate-stamp">
+                <div className="text-3xl font-bold text-pink-500 mb-2 drop-shadow-[0_0_10px_rgba(236,72,153,1)]">YAAAY! Deal Done! 🤝💖</div>
+                <p className="text-lg text-pink-200">See you soon! 😘</p>
+              </div>
+              
+              <Link href="/plan" className="group relative inline-flex items-center justify-center px-8 py-3 font-bold text-white transition-all duration-200 bg-pink-600 font-lg rounded-full hover:bg-pink-700 hover:scale-105 shadow-[0_0_20px_rgba(236,72,153,0.5)]">
+                <span>See The Plan 🗺️</span>
+                <div className="absolute -inset-3 rounded-full bg-pink-400 opacity-20 group-hover:opacity-40 blur-lg transition-opacity duration-200 animate-pulse"></div>
+              </Link>
+            </>
           ) : (
             <button
               onClick={() => setAgreed(true)}
