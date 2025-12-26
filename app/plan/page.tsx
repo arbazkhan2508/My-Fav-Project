@@ -100,6 +100,48 @@ export default function PlanPage() {
         </div>
       </div>
 
+      {/* Memories Section */}
+      <div className="max-w-6xl mx-auto mt-20 px-4">
+        <div className="text-center mb-12">
+          <h2 className="text-3xl md:text-4xl font-bold text-pink-600 mb-4 drop-shadow-sm">
+            Our Beautiful Memories 💖
+          </h2>
+          <p className="text-lg text-pink-400 font-medium">
+            Every moment with you is a treasure ✨
+          </p>
+        </div>
+        
+        <div className="columns-2 md:columns-3 lg:columns-4 gap-4 space-y-4">
+          {/* Videos first to catch attention or mixed? Let's mix them slightly or put them at start/end. 
+              Let's map all files. */}
+          {[
+            { type: 'video', src: '/images/us/us29.mp4' },
+            { type: 'video', src: '/images/us/us30.mp4' },
+            ...Array.from({ length: 28 }, (_, i) => ({ type: 'image', src: `/images/us/us${i + 1}.jpeg` }))
+          ].map((item, index) => (
+            <div 
+              key={index} 
+              className="break-inside-avoid bg-white p-2 rounded-2xl shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-1 border border-pink-100 group"
+            >
+              {item.type === 'video' ? (
+                <video 
+                  src={item.src} 
+                  controls 
+                  className="w-full h-auto rounded-xl"
+                />
+              ) : (
+                <img 
+                  src={item.src} 
+                  alt={`Memory ${index + 1}`} 
+                  className="w-full h-auto rounded-xl group-hover:opacity-90 transition-opacity"
+                  loading="lazy"
+                />
+              )}
+            </div>
+          ))}
+        </div>
+      </div>
+
       <div className="mt-16 text-center">
         <p className="text-2xl font-bold text-pink-500 animate-pulse">
           Can't wait! ❤️
