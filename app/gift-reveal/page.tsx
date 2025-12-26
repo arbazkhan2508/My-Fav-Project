@@ -1,10 +1,26 @@
 "use client";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Link from "next/link";
 
 export default function GiftRevealPage() {
   const [date, setDate] = useState("");
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [isClient, setIsClient] = useState(false);
+
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
+
+  const hearts = React.useMemo(() => {
+    if (!isClient) return [];
+    return [...Array(20)].map(() => ({
+      left: `${Math.random() * 100}%`,
+      fontSize: `${Math.random() * 20 + 20}px`,
+      animationDelay: `${Math.random() * 5}s`,
+      animationDuration: `${5 + Math.random() * 5}s`,
+      char: ['❤️', '💕', '🌹', '✨', '💖'][Math.floor(Math.random() * 5)]
+    }));
+  }, [isClient]);
 
   const handleSubmit = () => {
     if (date) {
@@ -69,18 +85,18 @@ export default function GiftRevealPage() {
 
       {/* Floating hearts background elements */}
       <div className="fixed inset-0 pointer-events-none z-[-1] overflow-hidden">
-        {[...Array(20)].map((_, i) => (
+        {hearts.map((heart, i) => (
           <div
             key={i}
             className="absolute bottom-[-50px] text-pink-500 animate-float-up opacity-0"
             style={{
-              left: `${Math.random() * 100}%`,
-              fontSize: `${Math.random() * 20 + 20}px`,
-              animationDelay: `${Math.random() * 5}s`,
-              animationDuration: `${5 + Math.random() * 5}s`,
+              left: heart.left,
+              fontSize: heart.fontSize,
+              animationDelay: heart.animationDelay,
+              animationDuration: heart.animationDuration,
             }}
           >
-            {['❤️', '💕', '🌹', '✨', '💖'][Math.floor(Math.random() * 5)]}
+            {heart.char}
           </div>
         ))}
       </div>
