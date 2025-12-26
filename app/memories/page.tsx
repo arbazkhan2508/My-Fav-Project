@@ -51,10 +51,20 @@ export default function MemoriesPage() {
         </div>
       </div>
       
-       <div className="mt-16 text-center pb-8">
+       <div className="mt-16 text-center pb-12 space-y-8">
         <p className="text-2xl font-bold text-pink-500 animate-pulse">
           I love you! ❤️
         </p>
+
+        <Link 
+          href="/thank-you"
+          className="group relative inline-flex items-center justify-center px-10 py-4 font-bold text-white transition-all duration-300 bg-gradient-to-r from-pink-500 to-purple-500 rounded-full hover:scale-105 shadow-[0_0_30px_rgba(236,72,153,0.5)] hover:shadow-[0_0_50px_rgba(236,72,153,0.8)]"
+        >
+          <span className="text-xl mr-2">✨</span>
+          <span className="text-xl">One Last Surprise...</span>
+          <span className="text-xl ml-2">➡️</span>
+          <div className="absolute -inset-1 rounded-full bg-white opacity-20 group-hover:opacity-40 blur-md transition-opacity duration-200"></div>
+        </Link>
       </div>
     </div>
   );
