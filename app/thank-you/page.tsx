@@ -1,5 +1,6 @@
 "use client";
 import React from "react";
+import Link from "next/link";
 
 export default function ThankYouPage() {
   return (
@@ -33,7 +34,21 @@ export default function ThankYouPage() {
             <div className="inline-block p-6 bg-white rounded-full shadow-lg">
               <span className="text-6xl block hover:scale-125 transition-transform cursor-pointer">💑</span>
             </div>
-            <p className="mt-4 text-pink-400 font-handwriting text-2xl">Forever Yours</p>
+            <p className="mt-4 text-pink-400 font-handwriting text-2xl mb-8">Forever Yours</p>
+
+            {/* Glowing Magical Birthday Portal */}
+            <div className="pt-4 flex justify-center">
+              <Link 
+                href="/birthday"
+                className="relative inline-flex items-center justify-center px-10 py-4 font-bold text-white transition-all duration-300 bg-gradient-to-r from-purple-600 via-pink-500 to-amber-500 rounded-full hover:scale-105 shadow-[0_0_30px_rgba(236,72,153,0.4)] hover:shadow-[0_0_50px_rgba(236,72,153,0.7)] group"
+              >
+                <span className="text-lg mr-2 animate-pulse">✨</span>
+                <span>Open Birthday Surprise</span>
+                <span className="text-lg ml-2 animate-pulse">✨</span>
+                {/* Outer pulsing halo */}
+                <span className="absolute -inset-1 rounded-full bg-gradient-to-r from-purple-500 via-pink-500 to-amber-500 opacity-20 blur-md group-hover:opacity-40 transition-opacity pointer-events-none" />
+              </Link>
+            </div>
           </div>
         </div>
       </div>
