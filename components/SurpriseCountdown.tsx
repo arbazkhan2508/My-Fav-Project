@@ -123,8 +123,8 @@ export default function SurpriseCountdown({ onUnlock, isUnlocked }: SurpriseCoun
             className="text-sm md:text-base text-gray-400 max-w-lg mx-auto font-sans"
           >
             {isCelebrationDay 
-              ? "The stars have aligned. It is 28th May. Your 24th chapter has officially unlocked... 💖" 
-              : "Counting down the moments until the clock strikes midnight on May 28th to celebrate your 24th birthday. 👑"
+              ? "The stars have aligned. It is 28th May. Your 23rd chapter has officially unlocked... 💖" 
+              : "Counting down the moments until the clock strikes midnight on May 28th to celebrate your 23rd birthday. 👑"
             }
           </motion.p>
         </div>

@@ -76,7 +76,7 @@ export default function CinematicTimeline() {
           transition={{ delay: 0.1 }}
           className="text-3xl md:text-5xl font-bold text-white font-serif"
         >
-          Our Story & Her 24th Chapter 🌸
+          Our Story & Her 23rd Chapter 🌸
         </motion.h3>
         <motion.p
           initial={{ opacity: 0 }}
@@ -186,25 +186,25 @@ export default function CinematicTimeline() {
 
                     {/* Media attachments */}
                     {event.image && (
-                      <div className="w-full h-48 md:h-64 rounded-2xl overflow-hidden mb-6 border border-neutral-800 relative bg-neutral-950">
+                      <div className="w-full h-64 md:h-80 rounded-2xl overflow-hidden mb-6 border border-neutral-800 relative bg-neutral-950">
                         <motion.img
                           initial={{ scale: 1.1 }}
                           whileInView={{ scale: 1 }}
                           transition={{ duration: 1.2 }}
                           src={event.image}
                           alt={event.title}
-                          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                          className={`w-full h-full object-cover ${event.imagePosition || 'object-top'} group-hover:scale-105 transition-transform duration-700`}
                         />
                         <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent pointer-events-none" />
                       </div>
                     )}
 
                     {event.video && (
-                      <div className="w-full h-48 md:h-64 rounded-2xl overflow-hidden mb-6 border border-neutral-800 relative bg-neutral-950">
+                      <div className="w-full h-64 md:h-80 rounded-2xl overflow-hidden mb-6 border border-neutral-800 relative bg-black flex items-center justify-center">
                         <video
                           src={event.video}
                           controls
-                          className="w-full h-full object-cover"
+                          className="w-full h-full object-contain"
                           poster="/images/bday/WhatsApp Image 2026-05-25 at 9.33.31 AM.jpeg"
                         />
                       </div>

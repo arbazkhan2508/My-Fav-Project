@@ -64,7 +64,7 @@ export default function CinematicHero() {
             transition={{ duration: 1, type: "spring", stiffness: 80 }}
             className="text-transparent bg-clip-text bg-gradient-to-r from-pink-500 via-rose-300 to-amber-300 text-3xl sm:text-4xl md:text-5xl font-black tracking-tight font-serif drop-shadow-[0_0_15px_rgba(236,72,153,0.5)] mb-2"
           >
-            Happy 24th Birthday, Bhalu! 🐻
+            Happy 23rd Birthday, Bhalu! 🐻
           </motion.h2>
 
           {/* Primary Cinematic Heading */}

@@ -7,6 +7,7 @@ export interface TimelineEvent {
   date: string;
   description: string;
   image?: string;
+  imagePosition?: string;
   video?: string;
   type: 'chat' | 'memory' | 'date' | 'joke' | 'support';
   chatMessages?: { sender: 'me' | 'her'; text: string }[];
@@ -42,17 +43,17 @@ export const birthdayConfig = {
   // Girlfriend's Details
   girlfriendName: "Bhalu 🐻",
   birthdayDate: "2026-05-28T00:00:00+05:30", // Midnight 28th May (Local Time)
-  
+
   // Audio Config
   bgMusicUrl: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3", // Restored working background audio URL
-  
+
   // Hero Section
   heroPhoto: "/images/bday/WhatsApp Image 2026-05-25 at 9.33.31 AM.jpeg", // Her primary photo on the homepage!
   heroHeading: "Out of all timelines in this universe...",
   heroSubheading: "I'm grateful mine found you.",
   heroTypewriterLines: [
-    "Entering your 24th beautiful chapter... 👑",
-    "24 years of spreading pure magic... ✨",
+    "Entering your 23rd beautiful chapter... 👑",
+    "23 years of spreading pure magic... ✨",
     "To my favorite notification...",
     "This is a digital love letter, just for you."
   ],
@@ -60,40 +61,39 @@ export const birthdayConfig = {
   // Story Timeline
   timeline: [
     {
-      id: "first-chat",
-      title: "Where it all began 💬",
-      date: "The First Hello",
-      description: "It started with a simple 'hey' that turned into endless nights of text. Who knew a single message would change my life forever?",
-      type: "chat",
-      chatMessages: [
-        { sender: 'me', text: 'Hey there! Hope you are having a nice day. 😊' },
-        { sender: 'her', text: 'Hey! Haha yes, it is. How about yours? 🙈' },
-        { sender: 'me', text: 'Better now that I\'m talking to you. 😉' },
-        { sender: 'her', text: 'Oh, smooth! 😂 text me more!' }
-      ]
+      id: "first-meet",
+      title: "Where it all began 🤝",
+      date: "First Meeting",
+      description: "Our very first meeting was in person. That first look, the first smile, and that first conversation changed everything. Who knew that meeting in person would be the start of our forever?",
+      image: "/images/us/us8.jpeg",
+      imagePosition: "object-top",
+      type: "date"
     },
     {
       id: "first-laugh",
-      title: "First time laughing together 😂",
+      title: "Laughing together 😂",
       date: "Inside Jokes & Giggles",
       description: "That moment when we realized our humor was perfectly out-of-sync yet completely matched. Your laugh became my favorite sound in the world.",
-      image: "/images/bday/WhatsApp Image 2026-05-25 at 9.33.30 AM.jpeg", // real bday image
+      image: "/images/us/us16.jpeg",
+      imagePosition: "object-top",
       type: "joke"
     },
     {
       id: "cute-fight",
-      title: "The Pizza Debate 🍕",
+      title: "Making each other fun together 🍕",
       date: "Our Playful Arguments",
       description: "Arguing over who loves whom more (spoiler: it's definitely me) or who gets the last slice. Your angry face is still the cutest thing ever.",
-      image: "/images/bday/WhatsApp Image 2026-05-25 at 10.13.20 AM.jpeg", // real bday image
+      image: "/images/us/us23.jpeg",
+      imagePosition: "object-top",
       type: "joke"
     },
     {
       id: "her-magic",
       title: "The Magic of Bhalu 🐻",
       date: "Who You Are To Me",
-      description: "It's not just about our journey together—it is about how incredible you are. Your focus, your kind heart, your cute habits, and the way you light up every room you enter. 24 years of your pure, beautiful existence has made this world a hundred times brighter.",
-      image: "/images/bday/WhatsApp Image 2026-05-25 at 10.12.09 AM (4).jpeg",
+      description: "It's not just about our journey together—it is about how incredible you are. Your focus, your kind heart, your cute habits, and the way you light up every room you enter. 23 years of your pure, beautiful existence has made this world a hundred times brighter.",
+      image: "/images/bday/WhatsApp Image 2026-05-25 at 9.33.30 AM.jpeg",
+      imagePosition: "object-top",
       type: "support"
     },
     {
@@ -102,11 +102,12 @@ export const birthdayConfig = {
       date: "Through Thick and Thin",
       description: "Thank you for being my rock. Whenever the world gets too noisy, holding your hand is the only thing that makes sense.",
       image: "/images/bday/WhatsApp Image 2026-05-25 at 10.12.09 AM (5).jpeg", // real bday image
+      imagePosition: "object-top",
       type: "support"
     },
     {
       id: "favorite-memories",
-      title: "Infinite Frames of You 🎥",
+      title: "Infinite Frames of US 🎥",
       date: "Our Favorite Vibe",
       description: "Every single moment, from the quiet silence to the loudest laughs. I'm saving every second in my heart.",
       video: "/images/us/us29.mp4",
@@ -170,7 +171,6 @@ export const birthdayConfig = {
     { id: 6, src: "/images/bday/WhatsApp Image 2026-05-25 at 10.12.09 AM (6).jpeg", caption: "You light up my entire world 🌟", rotation: 5 },
     { id: 7, src: "/images/bday/WhatsApp Image 2026-05-25 at 10.12.09 AM (7).jpeg", caption: "Holding onto you forever 🫂", rotation: -6 },
     { id: 8, src: "/images/bday/WhatsApp Image 2026-05-25 at 10.12.09 AM (8).jpeg", caption: "My once-in-a-lifetime kind of girl 🌸", rotation: 3 },
-    { id: 9, src: "/images/bday/WhatsApp Image 2026-05-25 at 9.33.31 AM (1).jpeg", caption: "To infinite more memories together 🥂", rotation: -2 },
   ] as PolaroidMemory[],
 
   // Open When... Letters
@@ -220,7 +220,7 @@ export const birthdayConfig = {
   // Final Birthday Message (Editable Paragraph)
   finalSurpriseMessage: `Happy Birthday, my absolute favorite person in the universe! 💖
 
-Today is all about celebrating your 24th birthday—the most beautiful, loving, and magical girl who came into my life and made it complete. I am so incredibly grateful for every single laugh, every late-night conversation, and every dream we\'ve shared. 
+Today is all about celebrating your 23rd birthday—the most beautiful, loving, and magical girl who came into my life and made it complete. I am so incredibly grateful for every single laugh, every late-night conversation, and every dream we\'ve shared. 
 
 You deserve the world and so much more. I promise to be by your side, holding your hand, and loving you more and more with each passing day. Thank you for being my peace, my partner, and my love.
 

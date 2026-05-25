@@ -1,7 +1,7 @@
 "use client";
 import React, { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Heart, Sparkles, Star, Play, FileImage, X, Maximize2 } from "lucide-react";
+import { Heart, Sparkles, Star, Play, FileImage, X, Maximize2, ChevronLeft, ChevronRight, Pause } from "lucide-react";
 import confetti from "canvas-confetti";
 import { birthdayConfig } from "@/constants/birthdayConfig";
 import { playSynthSound, pauseMusic, resumeMusic } from "@/components/AudioController";
@@ -10,24 +10,49 @@ interface GrandFinaleProps {
   isUnlocked: boolean;
 }
 
+const slideshowImages = [
+  "/images/bday/WhatsApp Image 2026-05-25 at 10.12.09 AM.jpeg",
+  "/images/bday/WhatsApp Image 2026-05-25 at 10.12.09 AM (1).jpeg",
+  "/images/bday/WhatsApp Image 2026-05-25 at 10.12.09 AM (2).jpeg",
+  "/images/bday/WhatsApp Image 2026-05-25 at 10.12.09 AM (3).jpeg",
+  "/images/bday/WhatsApp Image 2026-05-25 at 10.12.09 AM (4).jpeg",
+  "/images/bday/WhatsApp Image 2026-05-25 at 10.12.09 AM (5).jpeg",
+  "/images/bday/WhatsApp Image 2026-05-25 at 10.12.09 AM (6).jpeg",
+  "/images/bday/WhatsApp Image 2026-05-25 at 10.12.09 AM (7).jpeg",
+  "/images/bday/WhatsApp Image 2026-05-25 at 10.12.09 AM (8).jpeg",
+  "/images/bday/WhatsApp Image 2026-05-25 at 10.13.20 AM.jpeg",
+  "/images/bday/WhatsApp Image 2026-05-25 at 9.33.30 AM.jpeg",
+  "/images/bday/WhatsApp Image 2026-05-25 at 9.33.31 AM.jpeg",
+  "/images/bday/WhatsApp Image 2026-05-25 at 9.33.31 AM (1).jpeg"
+];
+
 export default function GrandFinale({ isUnlocked }: GrandFinaleProps) {
   const [showCelebration, setShowCelebration] = useState(false);
   const [videoModal, setVideoModal] = useState(false);
   const [noteModal, setNoteModal] = useState(false);
   const [noteZoom, setNoteZoom] = useState(false);
+  const [currentSlideIndex, setCurrentSlideIndex] = useState(0);
+  const [isSlideshowPlaying, setIsSlideshowPlaying] = useState(true);
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
   const videoRef = useRef<HTMLVideoElement | null>(null);
 
+  // Auto-play slideshow effect
+  useEffect(() => {
+    if (!videoModal || !isSlideshowPlaying) return;
+    const interval = setInterval(() => {
+      setCurrentSlideIndex((prev) => (prev + 1) % slideshowImages.length);
+    }, 3000);
+    return () => clearInterval(interval);
+  }, [videoModal, isSlideshowPlaying]);
+
   const openVideoModal = () => {
     playSynthSound('click');
-    pauseMusic();
+    setCurrentSlideIndex(0);
+    setIsSlideshowPlaying(true);
     setVideoModal(true);
   };
 
   const closeVideoModal = () => {
-    if (videoRef.current) {
-      videoRef.current.pause();
-    }
     resumeMusic();
     setVideoModal(false);
   };
@@ -235,7 +260,7 @@ export default function GrandFinale({ isUnlocked }: GrandFinaleProps) {
         />
       )}
 
-      {/* Video Modal */}
+      {/* Slideshow Modal */}
       <AnimatePresence>
         {videoModal && (
           <motion.div
@@ -251,20 +276,20 @@ export default function GrandFinale({ isUnlocked }: GrandFinaleProps) {
               animate={{ scale: 1, y: 0, opacity: 1 }}
               exit={{ scale: 0.85, y: 30, opacity: 0 }}
               transition={{ type: "spring", stiffness: 60, damping: 16 }}
-              className="relative w-full max-w-3xl rounded-3xl overflow-hidden border border-amber-500/30 shadow-[0_0_60px_rgba(245,158,11,0.25)]"
+              className="relative w-full max-w-lg rounded-3xl overflow-hidden border border-amber-500/30 shadow-[0_0_60px_rgba(245,158,11,0.25)] bg-neutral-950"
             >
               {/* Ambient glow rim */}
               <div className="absolute inset-0 rounded-3xl bg-gradient-to-br from-amber-500/5 via-transparent to-pink-500/5 pointer-events-none z-10" />
 
               {/* Header */}
-              <div className="flex items-center justify-between px-6 py-4 bg-neutral-950/80 backdrop-blur-md border-b border-white/5">
+              <div className="flex items-center justify-between px-6 py-4 bg-neutral-950/80 backdrop-blur-md border-b border-white/5 z-20 relative">
                 <div className="flex items-center gap-2">
                   <div className="w-8 h-8 rounded-full bg-gradient-to-br from-amber-500 to-pink-500 flex items-center justify-center">
-                    <Play className="w-4 h-4 text-white fill-white" />
+                    <Sparkles className="w-4 h-4 text-white" />
                   </div>
                   <div>
-                    <p className="text-white font-semibold text-sm">Video Message 🎥</p>
-                    <p className="text-neutral-500 text-xs">A special message just for you, Bhalu 🐻</p>
+                    <p className="text-white font-semibold text-sm">Memory Loop 📸</p>
+                    <p className="text-neutral-500 text-xs">Our cutest moments on a loop 💖</p>
                   </div>
                 </div>
                 <button
@@ -275,33 +300,84 @@ export default function GrandFinale({ isUnlocked }: GrandFinaleProps) {
                 </button>
               </div>
 
-              {/* Video Player */}
-              <div className="bg-black aspect-video relative">
-                <video
-                  ref={videoRef}
-                  src={birthdayConfig.finalVideoUrl}
-                  controls
-                  className="w-full h-full object-contain"
-                  onError={() => {
-                    // Fallback handled by the error overlay
+              {/* Slideshow Display */}
+              <div className="bg-neutral-950 h-[500px] relative overflow-hidden flex items-center justify-center">
+                {/* Blur Backdrop Effect */}
+                <div 
+                  className="absolute inset-0 bg-cover bg-center blur-2xl opacity-30 scale-110 transition-all duration-1000"
+                  style={{ backgroundImage: `url(${slideshowImages[currentSlideIndex]})` }}
+                />
+                
+                <AnimatePresence mode="wait">
+                  <motion.img
+                    key={currentSlideIndex}
+                    src={slideshowImages[currentSlideIndex]}
+                    alt={`Birthday Slide ${currentSlideIndex}`}
+                    initial={{ opacity: 0, scale: 0.95 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    exit={{ opacity: 0, scale: 1.05 }}
+                    transition={{ duration: 0.4 }}
+                    className="max-h-[90%] max-w-[90%] object-contain relative z-10 p-2 shadow-2xl rounded-2xl"
+                  />
+                </AnimatePresence>
+
+                {/* Left/Right Navigation Arrows */}
+                <button
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    playSynthSound('click');
+                    setCurrentSlideIndex((prev) => (prev - 1 + slideshowImages.length) % slideshowImages.length);
                   }}
+                  className="absolute left-4 top-1/2 -translate-y-1/2 z-20 w-10 h-10 rounded-full bg-black/40 hover:bg-black/70 border border-white/10 flex items-center justify-center text-white cursor-pointer active:scale-95 transition-all"
                 >
-                  Your browser does not support the video tag.
-                </video>
-                {/* Fallback overlay if video fails to load */}
-                <div
-                  className="absolute inset-0 flex flex-col items-center justify-center bg-neutral-950/95 text-center p-8 pointer-events-none"
-                  style={{ display: "none" }}
-                  id="video-fallback"
+                  <ChevronLeft className="w-5 h-5" />
+                </button>
+                <button
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    playSynthSound('click');
+                    setCurrentSlideIndex((prev) => (prev + 1) % slideshowImages.length);
+                  }}
+                  className="absolute right-4 top-1/2 -translate-y-1/2 z-20 w-10 h-10 rounded-full bg-black/40 hover:bg-black/70 border border-white/10 flex items-center justify-center text-white cursor-pointer active:scale-95 transition-all"
                 >
-                  <span className="text-5xl mb-4">🎥</span>
-                  <p className="text-white font-bold text-lg">Video Coming Soon!</p>
-                  <p className="text-neutral-400 text-sm mt-2">Place your video at <code className="text-amber-400">public/video/birthday_message.mp4</code></p>
+                  <ChevronRight className="w-5 h-5" />
+                </button>
+
+                {/* Bottom Slideshow Controls overlay */}
+                <div className="absolute bottom-4 left-1/2 -translate-x-1/2 z-20 flex items-center gap-4 bg-black/60 backdrop-blur-md px-4 py-2 rounded-full border border-white/10">
+                  <button
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      playSynthSound('pop');
+                      setIsSlideshowPlaying(!isSlideshowPlaying);
+                    }}
+                    className="text-white hover:text-pink-400 transition-colors cursor-pointer"
+                  >
+                    {isSlideshowPlaying ? <Pause className="w-4 h-4" /> : <Play className="w-4 h-4 fill-white" />}
+                  </button>
+                  
+                  {/* Dot Indicators */}
+                  <div className="flex gap-1.5 max-w-[150px] overflow-hidden justify-center items-center">
+                    {slideshowImages.map((_, idx) => (
+                      <span
+                        key={idx}
+                        className={`w-1.5 h-1.5 rounded-full transition-all duration-300 ${
+                          idx === currentSlideIndex 
+                            ? 'bg-pink-500 scale-125' 
+                            : 'bg-white/30'
+                        }`}
+                      />
+                    ))}
+                  </div>
+
+                  <span className="text-[10px] text-neutral-400 font-bold tracking-wider">
+                    {currentSlideIndex + 1}/{slideshowImages.length}
+                  </span>
                 </div>
               </div>
 
               {/* Footer */}
-              <div className="px-6 py-4 bg-neutral-950/80 border-t border-white/5 text-center">
+              <div className="px-6 py-4 bg-neutral-950 border-t border-white/5 text-center">
                 <p className="text-xs text-neutral-500 italic">Made with infinite love ❤️ — just for you</p>
               </div>
             </motion.div>
@@ -463,7 +539,7 @@ export default function GrandFinale({ isUnlocked }: GrandFinaleProps) {
                   className="flex flex-col items-center"
                 >
                   <span className="text-xs font-bold text-amber-400 tracking-[0.3em] uppercase mb-4">
-                    Happy 24th Birthday, My Love
+                    Happy 23rd Birthday, My Love
                   </span>
                   <h1 className="text-5xl sm:text-7xl md:text-8xl font-black tracking-tighter text-transparent bg-clip-text bg-gradient-to-r from-pink-500 via-rose-300 to-amber-300 drop-shadow-[0_0_20px_rgba(236,72,153,0.8)] uppercase">
                     Happy Birthday!
@@ -538,14 +614,14 @@ export default function GrandFinale({ isUnlocked }: GrandFinaleProps) {
                   
                   <div className="relative z-10 space-y-3">
                     <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-amber-500 to-orange-600 flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300">
-                      <Play className="w-6 h-6 text-white fill-white" />
+                      <Sparkles className="w-6 h-6 text-white" />
                     </div>
                     <div>
-                      <h3 className="text-white font-bold text-base font-serif">Watch My Video</h3>
-                      <p className="text-neutral-500 text-xs mt-0.5">A heartfelt message just for you 🎥</p>
+                      <h3 className="text-white font-bold text-base font-serif">Memory Loop</h3>
+                      <p className="text-neutral-500 text-xs mt-0.5">Our cutest moments on a loop 📸</p>
                     </div>
                     <div className="flex items-center gap-1 text-amber-400 text-xs font-semibold">
-                      <span>Play Now</span>
+                      <span>Open Reel</span>
                       <span className="group-hover:translate-x-1 transition-transform inline-block">→</span>
                     </div>
                   </div>
