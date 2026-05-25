@@ -169,6 +169,34 @@ export default function SurpriseCountdown({ onUnlock, isUnlocked }: SurpriseCoun
           </motion.div>
         )}
 
+        {/* ── Visible Unlock Button ── */}
+        {!isCelebrationDay && (
+          <motion.div
+            initial={{ opacity: 0, y: 16 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.4 }}
+            className="pt-4 flex flex-col items-center gap-3"
+          >
+            <motion.button
+              onClick={() => {
+                playSynthSound('success');
+                setIsCelebrationDay(true);
+                onUnlock();
+              }}
+              whileHover={{ scale: 1.06 }}
+              whileTap={{ scale: 0.96 }}
+              className="relative group px-10 py-4 rounded-full font-black text-base text-white bg-gradient-to-r from-pink-600 via-rose-500 to-amber-500 hover:from-pink-500 hover:via-rose-400 hover:to-amber-400 shadow-[0_0_35px_rgba(236,72,153,0.35)] hover:shadow-[0_0_55px_rgba(236,72,153,0.55)] transition-all duration-300 cursor-pointer border border-white/10"
+            >
+              <span className="absolute inset-0 rounded-full bg-pink-500/20 animate-ping pointer-events-none" />
+              ✨ Unlock Grand Finale
+            </motion.button>
+            <p className="text-[10px] text-neutral-600 font-medium tracking-wide">
+              Click to reveal the final surprise early 💖
+            </p>
+          </motion.div>
+        )}
+
       </div>
     </section>
   );

@@ -14,6 +14,8 @@ import LoveLetters from "@/components/LoveLetters";
 import GiftScratchcard from "@/components/GiftScratchcard";
 import StarWish from "@/components/StarWish";
 import LoveCoupons from "@/components/LoveCoupons";
+import LoveTrivia from "@/components/LoveTrivia";
+import BirthdayCake from "@/components/BirthdayCake";
 import PageClickHearts from "@/components/PageClickHearts";
 import SurpriseCountdown from "@/components/SurpriseCountdown";
 import GrandFinale from "@/components/GrandFinale";
@@ -108,6 +110,18 @@ export default function BirthdaySurprisePage() {
 
           {/* Section Divider */}
           <div className="h-[1px] w-full bg-gradient-to-r from-transparent via-purple-500/20 to-transparent" />
+
+          {/* 5.91. BHALU & ME TRIVIA MINI-GAME */}
+          <LoveTrivia />
+
+          {/* Section Divider */}
+          <div className="h-[1px] w-full bg-gradient-to-r from-transparent via-amber-500/20 to-transparent" />
+
+          {/* 5.95. BIRTHDAY CAKE BLOW-OUT */}
+          <BirthdayCake />
+
+          {/* Section Divider */}
+          <div className="h-[1px] w-full bg-gradient-to-r from-transparent via-pink-500/20 to-transparent" />
 
           {/* 6. COUNTDOWN TIMER */}
           <SurpriseCountdown 

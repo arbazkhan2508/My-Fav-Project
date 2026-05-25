@@ -100,6 +100,10 @@ export const stopBackgroundMusic = () => {
   }
 };
 
+// Convenience aliases used by modal overlays (e.g. video player)
+export const pauseMusic = stopBackgroundMusic;
+export const resumeMusic = startBackgroundMusic;
+
 interface AudioControllerProps {
   shouldPlay?: boolean;
 }
