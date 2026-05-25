@@ -126,7 +126,11 @@ export default function BirthdaySurprisePage() {
           {/* 6. COUNTDOWN TIMER */}
           <SurpriseCountdown 
             isUnlocked={isUnlocked} 
-            onUnlock={() => setIsUnlocked(true)} 
+            onUnlock={() => {
+              setTimeout(() => {
+                setIsUnlocked(true);
+              }, 0);
+            }} 
           />
 
           {/* Section Divider */}

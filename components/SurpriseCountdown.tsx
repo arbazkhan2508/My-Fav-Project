@@ -22,6 +22,11 @@ export default function SurpriseCountdown({ onUnlock, isUnlocked }: SurpriseCoun
   const [isCelebrationDay, setIsCelebrationDay] = useState(false);
   const [debugClicks, setDebugClicks] = useState(0);
 
+  const onUnlockRef = React.useRef(onUnlock);
+  useEffect(() => {
+    onUnlockRef.current = onUnlock;
+  }, [onUnlock]);
+
   useEffect(() => {
     const targetDate = new Date(birthdayConfig.birthdayDate).getTime();
 
@@ -31,7 +36,7 @@ export default function SurpriseCountdown({ onUnlock, isUnlocked }: SurpriseCoun
 
       if (difference <= 0) {
         setIsCelebrationDay(true);
-        onUnlock(); // Call callback to unlock final surprise
+        onUnlockRef.current(); // Call callback to unlock final surprise
         return true; // Stop interval
       } else {
         const days = Math.floor(difference / (1000 * 60 * 60 * 24));
@@ -54,7 +59,7 @@ export default function SurpriseCountdown({ onUnlock, isUnlocked }: SurpriseCoun
     }, 1000);
 
     return () => clearInterval(timer);
-  }, [onUnlock]);
+  }, []);
 
   // Sync isCelebrationDay with parent bypass
   useEffect(() => {

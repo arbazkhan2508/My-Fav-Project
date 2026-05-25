@@ -231,7 +231,7 @@ export default function GrandFinale({ isUnlocked }: GrandFinaleProps) {
       {showCelebration && (
         <canvas 
           ref={canvasRef} 
-          className="absolute inset-0 w-full h-full pointer-events-none z-30" 
+          className="absolute inset-0 w-full h-full pointer-events-none z-0" 
         />
       )}
 
