@@ -231,5 +231,41 @@ Forever and always, yours. ❤️`,
   // Interactive Scratchcard Surprise Gift
   scratchcardGiftTitle: "A Romantic Spa & Pamper Day 🧖‍♀️✨",
   scratchcardGiftDesc: "Redeemable anytime you want to feel relaxed, pampered, and completely spoiled. You deserve it, my queen! 👑💖",
-  scratchcardGiftPhoto: "/images/bday/WhatsApp Image 2026-05-25 at 10.12.09 AM (7).jpeg"
+  scratchcardGiftPhoto: "/images/bday/WhatsApp Image 2026-05-25 at 10.12.09 AM (7).jpeg",
+
+  // Redeemable Love Coupons
+  coupons: [
+    {
+      id: 1,
+      title: "Silent Win Card 🏆",
+      description: "Redeem to instantly win any silly argument. Use wisely, my love—you only get one! 😉",
+      icon: "🤫",
+      whatsappMessage: "Hey! I just redeemed my 'Silent Win Card' 🏆! You officially lose the argument, deal done! 🤝😜"
+    },
+    {
+      id: 2,
+      title: "Midnight Cravings 🍦",
+      description: "Redeem this for a late-night ice cream run or dessert delivery, sponsored entirely by me.",
+      icon: "🍨",
+      whatsappMessage: "Hey! I'm hungry! I just redeemed my 'Midnight Cravings' voucher 🍦. Get ready to order or take me out! 🐻💖"
+    },
+    {
+      id: 3,
+      title: "Infinite Hugs 🫂",
+      description: "Redeem for a 20-minute tight squeeze and warm cuddles whenever you feel stressed or cold.",
+      icon: "🧸",
+      whatsappMessage: "Hey! I need some warmth. I just redeemed my 'Infinite Hugs' coupon 🫂. Prepare for a long hug! ❤️"
+    },
+    {
+      id: 4,
+      title: "Massage Session 🧖‍♀️",
+      description: "Redeem for a relaxing head and back massage after a long, tiring day.",
+      icon: "💆‍♀️",
+      whatsappMessage: "Hey! I'm tired. I just redeemed my 'Massage Session' coupon 🧖‍♀️. Your hands are mine tonight! 💆‍♀️✨"
+    }
+  ],
+
+  // Climax Clues: Video Message and Scanned Handwritten Note
+  finalVideoUrl: "/video/birthday_message.mp4", // Put your video file at public/video/birthday_message.mp4
+  finalHandwrittenNote: "/images/bday/WhatsApp Image 2026-05-25 at 9.33.31 AM (1).jpeg" // Put your handwritten note image here
 };

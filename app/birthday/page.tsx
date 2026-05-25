@@ -13,6 +13,7 @@ import MemoryScrapbook from "@/components/MemoryScrapbook";
 import LoveLetters from "@/components/LoveLetters";
 import GiftScratchcard from "@/components/GiftScratchcard";
 import StarWish from "@/components/StarWish";
+import LoveCoupons from "@/components/LoveCoupons";
 import PageClickHearts from "@/components/PageClickHearts";
 import SurpriseCountdown from "@/components/SurpriseCountdown";
 import GrandFinale from "@/components/GrandFinale";
@@ -101,6 +102,12 @@ export default function BirthdaySurprisePage() {
 
           {/* Section Divider */}
           <div className="h-[1px] w-full bg-gradient-to-r from-transparent via-pink-500/20 to-transparent" />
+
+          {/* 5.9. INTERACTIVE WAX-SEALED LOVE COUPONS */}
+          <LoveCoupons />
+
+          {/* Section Divider */}
+          <div className="h-[1px] w-full bg-gradient-to-r from-transparent via-purple-500/20 to-transparent" />
 
           {/* 6. COUNTDOWN TIMER */}
           <SurpriseCountdown 
